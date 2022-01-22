@@ -6,19 +6,16 @@
   "author": "Mohammad Akram <mohammadakram077@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./server/server.js",
-    "start": "node ./server/server.js",
+    "start": "yarn server:dev && yarn client:start",
+    "server:dev": "nodemon --exitcrash --inspect --delay 500ms --watch server ./server/server.js",
+    "server:start": "node ./server/server.js",
     "lint": "eslint . -c .eslintrc.js --ext js --cache",
-    "client:start:dev": "webpack-dev-server --mode development --open --hot --host localhost --port 8080",
+    "client:dev": "webpack-dev-server --mode development --open --hot --host localhost --port 8080 --config ./client/webpack/dev.config.js",
     "client:build": "webpack --mode production",
     "lint-fix": "yarn lint --fix",
     "format": "prettier --write \"{,!(node_modules|dist)/**/}*.(js|css)\""
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "morgan": "^1.10.0",
-    "puppeteer": "^10.2.0",
     "@carbon/charts": "^0.45.1",
     "@carbon/charts-react": "^0.45.1",
     "@carbon/icons-react": "^10.37.0",
@@ -27,9 +24,13 @@
     "carbon-components-react": "^7.41.0",
     "carbon-icons": "^7.0.7",
     "copy-webpack-plugin": "^9.0.1",
+    "cors": "^2.8.5",
     "d3": "^7.0.1",
+    "express": "^4.17.1",
     "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
     "prop-types": "^15.7.2",
+    "puppeteer": "^10.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
@@ -39,11 +40,6 @@
     "yarn": "^1.22.11"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-prettier": "^3.4.1",
-    "nodemon": "^2.0.12",
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.15.0",
     "@babel/plugin-transform-runtime": "^7.15.0",
@@ -51,18 +47,26 @@
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "sass": "^1.38.2",
     "style-loader": "^3.2.1",
-    "webpack-dev-server": "^4.0.0"
+    "webpack-dev-server": "^4.0.0",
+    "webpack-merge": "^5.8.0"
   },
-  "engines" : { "node" : ">=12.0" },
+  "engines": {
+    "node": ">=12.0"
+  },
   "engineStrict": true,
   "proxy": "http://localhost:9090"
 }
